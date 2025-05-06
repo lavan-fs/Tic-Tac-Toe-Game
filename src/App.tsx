@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Board from './components/Board';
+import WinningModal from './components/WinningModal';
 import { GameState, Player } from './types';
 import './App.css';
 
@@ -19,6 +20,7 @@ const winningCombinations = [
 
 function App() {
   const [gameState, setGameState] = useState<GameState>(initialGameState);
+  const [showModal, setShowModal] = useState(false);
 
   const checkWinner = (board: Player[]): Player => {
     for (const [a, b, c] of winningCombinations) {
@@ -46,6 +48,9 @@ function App() {
     };
 
     setGameState(newGameState);
+    if (winner) {
+      setShowModal(true);
+    }
   };
 
   const handlePlayAgain = () => {
@@ -65,6 +70,12 @@ function App() {
         onCellClick={handleCellClick}
         onPlayAgain={handlePlayAgain}
       />
+      {showModal && gameState.winner && (
+        <WinningModal
+          winner={gameState.winner}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 }

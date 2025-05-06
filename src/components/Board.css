@@ -3,6 +3,10 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+  backdrop-filter: blur(5px);
 }
 
 .score-board {
@@ -10,28 +14,123 @@
   justify-content: space-between;
   width: 300px;
   margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid var(--neon-blue);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+}
+
+.score {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score::before {
+  content: '🏆';
+  font-size: 1.4rem;
+}
+
+.status {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  color: var(--neon-pink);
+  text-shadow: 0 0 10px var(--neon-pink);
+  min-height: 30px;
 }
 
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--neon-blue);
 }
 
 .cell {
   width: 80px;
   height: 80px;
-  font-size: 2rem;
-  border: 2px solid #333;
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--neon-blue);
+  color: var(--text-color);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.cell:hover:not(:disabled) {
+  background: rgba(0, 243, 255, 0.1);
+  box-shadow: 0 0 15px var(--neon-blue);
+  transform: scale(1.05);
+}
+
+.cell:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
 }
 
 .play-again {
   margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  background: transparent;
+  color: var(--neon-blue);
+  border: 2px solid var(--neon-blue);
+  border-radius: 25px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.play-again:hover {
+  background: var(--neon-blue);
+  color: var(--dark-bg);
+  box-shadow: 0 0 20px var(--neon-blue);
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    padding: 15px;
+    width: 95%;
+  }
+
+  .score-board {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .cell {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
+
+  .status {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cell {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+
+  .score {
+    font-size: 1rem;
+  }
 } 
